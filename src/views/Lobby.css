@@ -1,0 +1,267 @@
+.lobby-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  background: var(--bg);
+  padding: 2rem;
+  color: var(--text);
+}
+
+.lobby-card {
+  background: var(--parchment-white);
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  border: 2px solid var(--border);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+.lobby-card h2 {
+  color: var(--text-h);
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.lobby-card p {
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+
+.lobby-error {
+  background: rgba(211, 47, 47, 0.1);
+  color: var(--straw-red);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--straw-red);
+  margin-bottom: 1.5rem;
+}
+
+.lobby-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.action-box {
+  background: var(--code-bg);
+  padding: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.action-box h3 {
+  color: var(--text-h);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.action-divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: var(--text);
+}
+
+.action-divider::before,
+.action-divider::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.action-divider span {
+  padding: 0 1rem;
+  font-weight: bold;
+}
+
+.btn-create, .btn-join, .btn-start {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.btn-create {
+  background: var(--straw-red);
+}
+
+.btn-create:hover:not(:disabled) {
+  background: #f44336;
+  box-shadow: 0 0 10px var(--straw-red);
+}
+
+.btn-join {
+  background: #1e88e5;
+  margin-top: 1rem;
+}
+
+.btn-join:hover:not(:disabled) {
+  background: #42a5f5;
+  box-shadow: 0 0 10px #1e88e5;
+}
+
+.btn-start {
+  background: var(--treasure-gold);
+  color: #000;
+  margin-top: 1.5rem;
+}
+
+.btn-start:hover:not(:disabled) {
+  background: #ffd54f;
+  box-shadow: 0 0 10px var(--treasure-gold);
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+form input {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-h);
+  font-size: 1.1rem;
+  text-align: center;
+  text-transform: uppercase;
+  outline: none;
+}
+
+form input:focus {
+  border-color: var(--straw-red);
+}
+
+.lobby-waiting {
+  background: var(--code-bg);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.lobby-waiting h3 span {
+  color: var(--straw-red);
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+}
+
+.loader {
+  border: 4px solid rgba(255,255,255,0.1);
+  border-left-color: var(--straw-red);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin: 1.5rem auto 0;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.btn-leave {
+  width: 100%;
+  padding: 0.8rem;
+  background: transparent;
+  border: 1px solid var(--straw-red);
+  color: var(--straw-red);
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.btn-leave:hover:not(:disabled) {
+  background: var(--straw-red);
+  color: white;
+  box-shadow: 0 0 10px rgba(211, 47, 47, 0.4);
+}
+
+/* Active Games Resumption List */
+.active-games-box {
+  border: 1px dashed var(--treasure-gold) !important;
+  background: rgba(249, 168, 37, 0.03) !important;
+}
+
+.active-games-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.active-game-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  gap: 1rem;
+}
+
+.active-game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+
+.game-code {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text-h);
+}
+
+.game-status {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.game-status.en_curso {
+  color: #81c784;
+  background-color: rgba(76, 175, 80, 0.1);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.game-status.esperando {
+  color: var(--treasure-gold);
+  background-color: rgba(249, 168, 37, 0.1);
+  border: 1px solid rgba(249, 168, 37, 0.3);
+}
+
+.btn-resume {
+  background: var(--treasure-gold);
+  color: #000000;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 4px;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-resume:hover {
+  background: var(--treasure-gold-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(249, 168, 37, 0.3);
+}

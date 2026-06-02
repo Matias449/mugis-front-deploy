@@ -1,0 +1,119 @@
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0.7);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgba(46, 125, 50, 0);
+    transform: scale(1.03);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(46, 125, 50, 0);
+    transform: scale(1);
+  }
+}
+
+.game-sidebar {
+  background-color: var(--parchment-white);
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  border: 3px double var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  box-shadow: var(--shadow-premium);
+}
+
+.turn-indicator {
+  display: flex;
+  justify-content: center;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  border-radius: 30px;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  text-align: center;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+}
+
+.badge.active {
+  background-color: #2e7d32;
+  color: white;
+  animation: pulse 2s infinite;
+  border: 1px solid #1b5e20;
+}
+
+.badge.waiting {
+  background-color: var(--code-bg);
+  color: #cbd5e1; /* Gris claro brillante para máxima visibilidad en tema oscuro */
+  border: 1px solid var(--border);
+}
+
+.player-info {
+  text-align: center;
+  border-bottom: 2px dashed var(--border);
+  padding-bottom: 1.25rem;
+}
+
+.player-info h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.45rem;
+  color: #ffffff; /* Blanco puro para tema oscuro */
+  font-family: var(--font-heading);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.player-info p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #cbd5e1; /* Gris pizarra brillante para máxima legibilidad en oscuro */
+  font-weight: 700;
+  font-family: var(--font-sans);
+}
+
+.resources-panel h4 {
+  margin: 0 0 1rem 0;
+  font-size: 1.15rem;
+  color: var(--text-h);
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  padding-bottom: 0.25rem;
+  text-align: left;
+}
+
+.resources-panel ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.resources-panel li {
+  padding: 0.75rem 1rem;
+  background-color: var(--parchment-dark); /* Fondo oscuro mate */
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 750;
+  font-size: 1rem;
+  color: #ffffff; /* Blanco para máxima legibilidad en oscuro */
+  font-family: var(--font-sans);
+  text-align: left;
+  transition: all 0.2s ease;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.resources-panel li:hover {
+  border-color: var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  transform: translateX(3px);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.2);
+}

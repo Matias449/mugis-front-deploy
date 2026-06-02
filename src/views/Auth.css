@@ -1,0 +1,195 @@
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  padding: 3rem 2rem;
+  background-color: var(--bg);
+}
+
+.auth-card {
+  background-color: var(--parchment-white);
+  border: 4px double var(--border);
+  border-radius: 16px;
+  padding: 3.5rem 2.5rem;
+  width: 100%;
+  max-width: 460px;
+  box-shadow: var(--shadow-premium);
+  position: relative;
+  overflow: hidden;
+}
+
+.auth-card::before {
+  content: '☠️';
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 2rem;
+  opacity: 0.15;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.auth-header h2 {
+  font-size: 1.8rem;
+  color: #ffffff; /* Blanco puro para tema oscuro */
+  margin: 0 0 0.5rem 0;
+  font-family: var(--font-heading);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.auth-header p {
+  color: #cbd5e1; /* Gris pizarra brillante para máxima legibilidad en oscuro */
+  margin: 0;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  text-align: left;
+}
+
+.form-group label {
+  font-weight: 700;
+  color: #ffffff; /* Blanco para máxima legibilidad */
+  font-size: 0.9rem;
+  font-family: var(--font-sans);
+  letter-spacing: 0.5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  padding: 0.9rem 1.1rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  background-color: var(--parchment-dark); /* Fondo oscuro mate */
+  color: #ffffff; /* Texto en blanco */
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  background-color: var(--parchment-dark); /* Permanece oscuro en foco */
+  box-shadow: 0 0 0 4px rgba(211, 47, 47, 0.2), inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para el selector de roles */
+.role-selector {
+  border: 2px dashed var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+  background-color: var(--parchment-dark);
+}
+
+.role-selector legend {
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0 0.75rem;
+  color: #ffffff; /* Blanco */
+  font-family: var(--font-heading);
+}
+
+.radio-options {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+  justify-content: center;
+}
+
+.radio-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700; /* Aumentado grosor para legibilidad */
+  cursor: pointer;
+  font-family: var(--font-sans);
+  color: #e2e8f0; /* Blanco pizarra para máxima visibilidad en modo oscuro */
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+
+.radio-options label:hover {
+  color: var(--straw-red);
+}
+
+.radio-options input[type="radio"] {
+  accent-color: var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  width: 1.1rem;
+  height: 1.1rem;
+  cursor: pointer;
+}
+
+.btn-submit {
+  background: linear-gradient(135deg, var(--straw-red) 0%, #b71c1c 100%); /* Cambiado de azul a Rojo Luffy */
+  color: white;
+  padding: 1rem;
+  border: 2px solid var(--straw-red);
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  margin-top: 0.75rem;
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.25);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  letter-spacing: 0.5px;
+}
+
+.btn-submit:hover {
+  background: linear-gradient(135deg, var(--straw-red-hover) 0%, var(--straw-red) 100%);
+  transform: translateY(-2px);
+  border-color: #ffffff;
+  box-shadow: 0 8px 20px rgba(211, 47, 47, 0.35), 0 0 8px rgba(211, 47, 47, 0.2);
+}
+
+.btn-submit:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(211, 47, 47, 0.2);
+  opacity: 0.9;
+}
+
+.auth-footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.btn-toggle {
+  background: none;
+  border: none;
+  color: var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-family: var(--font-sans);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.btn-toggle:hover {
+  color: var(--straw-red-hover);
+  text-shadow: 0 0 8px rgba(211, 47, 47, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-toggle:active {
+  transform: translateY(0);
+}

@@ -1,0 +1,211 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+}
+
+/* Hero Section */
+.landing-hero {
+  background: linear-gradient(180deg, #000000 0%, #07090d 100%);
+  color: #ffffff;
+  text-align: center;
+  padding: 6rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  border-bottom: 4px double rgba(211, 47, 47, 0.4);
+  position: relative;
+  overflow: hidden;
+}
+
+.landing-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(211, 47, 47, 0.08) 2px, transparent 0);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+
+.landing-hero h1 {
+  font-size: 3.5rem;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), 0 0 20px rgba(211, 47, 47, 0.5);
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.landing-hero p {
+  font-size: 1.25rem;
+  max-width: 750px;
+  line-height: 1.7;
+  margin: 0;
+  color: #ffffff; /* Blanco puro para máximo contraste en fondo azul */
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.15s forwards;
+  opacity: 0;
+}
+
+/* Botón Call to Action (CTA) - Enfocado en Rojo Luffy */
+.btn-cta {
+  background: linear-gradient(135deg, var(--straw-red) 0%, #b71c1c 100%);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 1.1rem 3rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: var(--font-heading);
+  border-radius: 50px;
+  border: 2px solid var(--straw-red);
+  box-shadow: 0 6px 20px rgba(211, 47, 47, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  margin-top: 1.5rem;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s forwards;
+  opacity: 0;
+}
+
+.btn-cta:hover {
+  background: linear-gradient(135deg, var(--straw-red-hover) 0%, #880e4f 100%);
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(211, 47, 47, 0.6), 0 0 15px rgba(211, 47, 47, 0.5);
+  border-color: #ffffff;
+}
+
+.btn-cta:active {
+  transform: translateY(-1px) scale(1.01);
+  box-shadow: 0 4px 10px rgba(211, 47, 47, 0.4);
+  opacity: 0.95;
+}
+
+/* Características (Features) */
+.landing-features {
+  padding: 5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.landing-features h2 {
+  font-size: 2.2rem;
+  color: var(--text-h);
+  margin-bottom: 3.5rem;
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-heading);
+}
+
+.landing-features h2::after {
+  content: '☠️';
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+  color: var(--straw-red); /* Cambiado a Rojo Luffy */
+}
+
+.features-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.feature-card {
+  flex: 1 1 calc(33.333% - 2.5rem);
+  background-color: var(--parchment-white);
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.4s; }
+.feature-card:nth-child(2) { animation-delay: 0.55s; }
+.feature-card:nth-child(3) { animation-delay: 0.7s; }
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--straw-red); /* Enfasis en Rojo Luffy */
+  box-shadow: 0 15px 30px rgba(211, 47, 47, 0.15), var(--shadow-premium);
+  background-color: #1a2336; /* Cambiado a navy oscuro para tema oscuro */
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+.feature-card h3 {
+  color: #ffffff; /* Cambiado de azul oscuro a blanco para tema oscuro */
+  font-size: 1.45rem;
+  font-family: var(--font-heading);
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+/* Texto de Alto Contraste para Máxima Legibilidad en Tema Oscuro */
+.feature-card p {
+  color: #cbd5e1; /* Gris brillante muy legible en fondo oscuro */
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0;
+  font-weight: 400;
+}
+
+/* Footer de la página */
+.landing-footer {
+  margin-top: auto;
+  background-color: var(--ocean-blue);
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.95rem;
+  border-top: 2px solid var(--border);
+  font-family: var(--font-sans);
+}
+
+/* Ajuste responsivo */
+@media (max-width: 768px) {
+  .feature-card {
+    flex: 1 1 100%;
+    padding: 2rem 1.5rem;
+  }
+  .landing-hero h1 {
+    font-size: 2.2rem;
+  }
+  .landing-hero {
+    padding: 4rem 1.5rem;
+  }
+}

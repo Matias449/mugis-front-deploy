@@ -1,0 +1,85 @@
+.gameboard-container {
+  padding: 3rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+
+.gameboard-container h2 {
+  font-size: 2.5rem;
+  color: var(--text-h);
+  font-family: var(--font-heading);
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+.gameboard-container h2::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: var(--treasure-gold);
+}
+
+.gameboard-layout {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
+.gameboard-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+@media (max-width: 992px) {
+  .gameboard-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.victory-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+}
+
+.victory-animation {
+  background: radial-gradient(circle, var(--treasure-gold) 0%, transparent 80%);
+  padding: 4rem;
+  text-align: center;
+  animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.victory-animation h1 {
+  font-size: 4rem;
+  color: white;
+  text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  margin-bottom: 1rem;
+}
+
+.victory-animation p {
+  font-size: 1.8rem;
+  color: #fff;
+  font-weight: 700;
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}

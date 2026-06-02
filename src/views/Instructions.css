@@ -1,0 +1,175 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.instructions-container {
+  padding: 4rem 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.instructions-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.instructions-header h2 {
+  font-size: 2.5rem;
+  color: var(--text-h);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.instructions-header p {
+  color: var(--text);
+  font-size: 1.15rem;
+  font-family: var(--font-sans);
+}
+
+.instructions-section {
+  background-color: var(--parchment-white);
+  border: 3px double var(--border);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow);
+  margin-bottom: 3rem;
+  text-align: left;
+}
+
+.instructions-section h3 {
+  font-size: 1.8rem;
+  color: var(--straw-red); /* Cambiado de azul a Rojo Luffy */
+  margin: 0 0 1rem 0;
+  border-bottom: 3px solid var(--straw-red);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+  font-family: var(--font-heading);
+}
+
+.section-intro {
+  color: #cbd5e1; /* Máxima legibilidad en oscuro */
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+/* Grilla para las reglas usando Flexbox responsivo */
+.rules-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.rule-card {
+  flex: 1 1 calc(50% - 1.5rem);
+  background-color: var(--parchment-dark); /* Fondo oscuro mate */
+  border: 1px solid var(--border);
+  border-left: 5px solid var(--straw-red); /* Cambiado de dorado a Rojo Luffy */
+  border-radius: 8px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  opacity: 0;
+  animation: fadeInUp 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.rule-card:nth-child(1) { animation-delay: 0.1s; }
+.rule-card:nth-child(2) { animation-delay: 0.25s; }
+.rule-card:nth-child(3) { animation-delay: 0.4s; }
+.rule-card:nth-child(4) { animation-delay: 0.55s; }
+
+.rule-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--straw-red);
+  background-color: #1a2336; /* Navy más claro en hover */
+  box-shadow: 0 10px 20px rgba(211, 47, 47, 0.15), var(--shadow);
+}
+
+.rule-card h4 {
+  margin: 0 0 0.75rem 0;
+  color: #ffffff; /* Blanco puro para tema oscuro */
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Texto de Alto Contraste en Tema Oscuro */
+.rule-card p {
+  margin: 0;
+  color: #e2e8f0; /* Blanco pizarra muy legible */
+  font-size: 0.98rem;
+  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.divider {
+  border: 0;
+  height: 2px;
+  background: radial-gradient(circle, var(--border) 0%, transparent 100%);
+  margin: 4rem 0;
+}
+
+/* Estilos específicos para la sección de admin */
+.admin-section {
+  border-color: rgba(211, 47, 47, 0.3);
+}
+
+.admin-section h3 {
+  border-bottom-color: var(--straw-red);
+  color: var(--straw-red);
+}
+
+.admin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Texto de Alto Contraste para viñetas admin en Tema Oscuro */
+.admin-list li {
+  position: relative;
+  padding-left: 2rem;
+  font-size: 1.05rem;
+  color: #e2e8f0; /* Blanco pizarra brillante */
+  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.admin-list li::before {
+  content: "🛡️";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  font-size: 1.1rem;
+}
+
+.admin-list strong {
+  color: var(--text-h);
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+/* Responsivo para pantallas chicas */
+@media (max-width: 768px) {
+  .rule-card {
+    flex: 1 1 100%;
+  }
+  .instructions-section {
+    padding: 2rem 1.5rem;
+  }
+}

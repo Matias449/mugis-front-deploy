@@ -1,0 +1,243 @@
+/* Toasts List Container */
+.toasts-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 380px;
+  width: 90%;
+  pointer-events: none;
+}
+
+/* Base Toast Style */
+.toast-card {
+  position: relative;
+  background-color: var(--parchment-white);
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-premium);
+  display: grid;
+  grid-template-columns: 24px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+  pointer-events: auto;
+  animation: slideInToast 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: all 0.25s ease;
+}
+
+.toast-card:hover {
+  transform: translateX(-4px);
+}
+
+.toast-icon {
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-message {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--text);
+  font-weight: 600;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.toast-close-btn {
+  background: none;
+  border: none;
+  color: #64748b;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.toast-close-btn:hover {
+  color: var(--straw-red);
+}
+
+/* Toast Theme Types */
+.toast-success {
+  border-color: #2e7d32;
+  background-color: rgba(46, 125, 50, 0.12);
+  backdrop-filter: blur(12px);
+}
+.toast-success .toast-progress-bar {
+  background-color: #2e7d32;
+}
+
+.toast-error {
+  border-color: var(--straw-red);
+  background-color: rgba(211, 47, 47, 0.12);
+  backdrop-filter: blur(12px);
+}
+.toast-error .toast-progress-bar {
+  background-color: var(--straw-red);
+}
+
+.toast-warning {
+  border-color: var(--treasure-gold);
+  background-color: rgba(249, 168, 37, 0.12);
+  backdrop-filter: blur(12px);
+}
+.toast-warning .toast-progress-bar {
+  background-color: var(--treasure-gold);
+}
+
+.toast-info {
+  border-color: #3b82f6;
+  background-color: rgba(59, 130, 246, 0.12);
+  backdrop-filter: blur(12px);
+}
+.toast-info .toast-progress-bar {
+  background-color: #3b82f6;
+}
+
+/* Progress Bar Animating Down */
+.toast-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  animation: toastProgress 4s linear forwards;
+}
+
+@keyframes slideInToast {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toastProgress {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
+
+/* CUSTOM CONFIRMATION MODAL OVERLAY */
+.confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(5, 8, 15, 0.85);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeInConfirm 0.25s ease;
+}
+
+.confirm-modal {
+  background-color: var(--parchment-white);
+  border: 3px double var(--border);
+  border-radius: 14px;
+  width: 90%;
+  max-width: 440px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
+  overflow: hidden;
+  animation: scaleInConfirm 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.confirm-header {
+  background-color: var(--parchment-dark);
+  padding: 1.25rem 1.5rem;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+}
+
+.confirm-header h3 {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--text-h);
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.confirm-body {
+  padding: 1.75rem 1.5rem;
+  text-align: left;
+}
+
+.confirm-body p {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text);
+  line-height: 1.5;
+  font-weight: 500;
+  margin: 0;
+}
+
+.confirm-footer {
+  display: flex;
+  gap: 12px;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--parchment-dark);
+  border-top: 1px solid var(--border);
+  justify-content: flex-end;
+}
+
+.btn-confirm-cancel,
+.btn-confirm-accept {
+  padding: 0.6rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 750;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow);
+}
+
+.btn-confirm-cancel {
+  background-color: #334155;
+  color: #cbd5e1;
+  border: 1px solid var(--border);
+}
+
+.btn-confirm-cancel:hover {
+  background-color: #475569;
+  color: white;
+}
+
+.btn-confirm-accept {
+  background: linear-gradient(135deg, var(--straw-red) 0%, #b71c1c 100%);
+  color: white;
+  border: 1px solid var(--straw-red);
+}
+
+.btn-confirm-accept:hover {
+  background: linear-gradient(135deg, var(--straw-red-hover) 0%, var(--straw-red) 100%);
+  box-shadow: 0 4px 12px rgba(211, 47, 47, 0.35);
+}
+
+@keyframes fadeInConfirm {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleInConfirm {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

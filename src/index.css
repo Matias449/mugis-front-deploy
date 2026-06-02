@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Paleta de Colores Inspirada en One Piece (Tema Oscuro por Defecto) */
+  --ocean-blue: #0d1b2a;
+  --ocean-light: #1b263b;
+  --treasure-gold: #f9a825;
+  --treasure-gold-hover: #ffb300;
+  --straw-red: #d32f2f;
+  --straw-red-hover: #c62828;
+  --parchment-white: #111622; /* Carbón/azul marino táctico para tarjetas */
+  --parchment-dark: #0a0d16;  /* Negro mate para bloques internos */
+  
+  /* Sistema de Fuentes */
+  --font-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Cinzel', Georgia, 'Times New Roman', serif;
+  --font-mono: ui-monospace, Consolas, monospace;
+
+  /* Colores del Sistema (Ajustados para Máxima Legibilidad en Oscuro) */
+  --text: #e2e8f0;       /* Gris claro brillante */
+  --text-h: #ffffff;     /* Blanco puro para cabeceras */
+  --bg: #080b11;         /* Negro náutico profundo */
+  --border: #1e293b;     /* Gris azulado oscuro */
+  --code-bg: #0a0d16;
+  --accent: var(--straw-red);
+  --accent-bg: rgba(211, 47, 47, 0.15);
+  --accent-border: rgba(211, 47, 47, 0.5);
+  --social-bg: rgba(27, 38, 59, 0.5);
+  
+  --shadow: rgba(0, 0, 0, 0.5) 0 10px 15px -3px, rgba(0, 0, 0, 0.3) 0 4px 6px -2px;
+  --shadow-premium: 0 15px 30px rgba(0, 0, 0, 0.6);
+
+  font: 18px/145% var(--font-sans);
+  letter-spacing: 0.18px;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+#root {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--text-h);
+}
+
+h1 {
+  font-size: 48px;
+  letter-spacing: -1px;
+  margin: 32px 0;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  @media (max-width: 1024px) {
+    font-size: 32px;
+    margin: 20px 0;
+  }
+}
+
+h2 {
+  font-size: 32px;
+  line-height: 120%;
+  letter-spacing: -0.5px;
+  margin: 0 0 16px;
+  @media (max-width: 1024px) {
+    font-size: 24px;
+  }
+}
+
+p {
+  margin: 0;
+  font-family: var(--font-sans);
+}
+
+code,
+.counter {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  border-radius: 4px;
+  color: var(--text-h);
+}
+
+code {
+  font-size: 15px;
+  line-height: 135%;
+  padding: 4px 8px;
+  background: var(--code-bg);
+}
+
+

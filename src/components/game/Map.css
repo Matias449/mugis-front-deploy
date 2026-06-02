@@ -1,0 +1,186 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.game-map {
+  background: #f4ecd8; /* Parchment base */
+  background-image: 
+    linear-gradient(rgba(210, 180, 140, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 180, 140, 0.4) 1px, transparent 1px),
+    radial-gradient(#e0cda5 15%, transparent 16%),
+    radial-gradient(#e0cda5 15%, transparent 16%);
+  background-size: 20px 20px, 20px 20px, 40px 40px, 40px 40px;
+  background-position: -1px -1px, -1px -1px, 0 0, 20px 20px;
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 4px solid #8b5a2b; /* Wooden/leather border */
+  box-shadow: inset 0 0 40px rgba(139, 90, 43, 0.5), 0 8px 16px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-title {
+  color: #4a2e15;
+  margin: 0 0 1rem 0;
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  z-index: 2;
+}
+
+.map-canvas {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 400px;
+  border: 2px dashed rgba(139, 90, 43, 0.4);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.map-routes-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.route-line {
+  stroke: #8b5a2b;
+  stroke-width: 3;
+  stroke-dasharray: 8 6;
+  opacity: 0.6;
+  animation: dashAnimation 20s linear infinite;
+}
+
+@keyframes dashAnimation {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.island-node {
+  position: absolute;
+  transform: translate(-50%, -50%); /* Centrar respecto a x, y */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+}
+
+.island-node:hover {
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 3;
+}
+
+.island-icon {
+  font-size: 2.5rem;
+  filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.4));
+  transition: transform 0.3s ease;
+}
+
+.island-node:hover .island-icon,
+.island-node.active .island-icon {
+  transform: translateY(-5px);
+}
+
+.island-name-label {
+  background: rgba(255, 255, 255, 0.85);
+  color: #4a2e15;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #8b5a2b;
+  margin-top: 5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+/* Tipos de Isla - Variaciones en el label */
+.island-node.inicio .island-name-label { border-color: #2196f3; color: #0d47a1; }
+.island-node.pacifico .island-name-label { border-color: #4caf50; color: #1b5e20; }
+.island-node.combate .island-name-label { border-color: #f44336; color: #b71c1c; }
+.island-node.tesoro .island-name-label { border-color: #ff9800; color: #e65100; }
+.island-node.final .island-name-label { border-color: #9c27b0; color: #4a148c; }
+
+/* Estados */
+.island-node.selected-island .island-name-label {
+  background: #f44336;
+  color: white;
+  border-color: #b71c1c;
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.8);
+}
+
+.island-node.active::before {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(244,67,54,0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -60%);
+  z-index: -1;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: translate(-50%, -60%) scale(0.8); opacity: 0.5; }
+  50% { transform: translate(-50%, -60%) scale(1.2); opacity: 1; }
+  100% { transform: translate(-50%, -60%) scale(0.8); opacity: 0.5; }
+}
+
+.indicators-container {
+  display: flex;
+  gap: 0.3rem;
+  justify-content: center;
+  margin-top: 0.4rem;
+  position: absolute;
+  bottom: -20px;
+}
+
+.indicator-badge {
+  font-size: 0.65rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.player-badge {
+  background-color: var(--straw-red);
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.rival-badge {
+  background-color: var(--treasure-gold);
+  color: #000000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
