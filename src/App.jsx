@@ -11,7 +11,7 @@ import Lobby from './views/Lobby';
 import GameBoard from './views/GameBoard';
 import Profile from './views/Profile';
 import AdminDashboard from './views/AdminDashboard';
-import { NotificationProvider } from './contexts/NotificationContext';
+import { NotificationProvider } from './components/NotificationContext';
 
 // Redirecciona dinámicamente si entran a /juego directamente
 function GameRedirect() {
