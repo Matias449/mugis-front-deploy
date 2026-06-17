@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import { useNotification } from '../components/NotificationContext';
 import './AdminDashboard.css';
 
@@ -51,11 +50,13 @@ const AdminDashboard = () => {
 
     try {
       if (tab === 'users') {
-        const res = await axios.get(`${apiUrl}/users`, { headers });
-        setUsers(res.data.users || []);
+        const res = await fetch(`${apiUrl}/users`, { headers });
+        const data = await res.json();
+        setUsers(data.users || []);
       } else if (tab === 'games') {
-        const res = await axios.get(`${apiUrl}/game/partidas`, { headers });
-        setPartidas(res.data.partidas || []);
+        const res = await fetch(`${apiUrl}/game/partidas`, { headers });
+        const data = await res.json();
+        setPartidas(data.partidas || []);
       }
     } catch (error) {
       showNotification('Error al cargar datos del servidor', 'error');
@@ -66,15 +67,15 @@ const AdminDashboard = () => {
   };
 
   const handleDeleteUser = async (id) => {
-    // Custom confirm via simple prompt for now, or just normal confirm (deprecated? we shouldn't use window.confirm)
-    // We'll simulate a simple check
     if (!window.confirm(`¿Estás seguro de que deseas eliminar al usuario #${id}? Esta acción es irreversible.`)) return;
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${apiUrl}/users/${id}`, {
+      const res = await fetch(`${apiUrl}/users/${id}`, {
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
+      if (!res.ok) throw new Error('Error al eliminar');
       showNotification('Usuario eliminado con éxito', 'success');
       fetchData('users');
     } catch (error) {
@@ -87,9 +88,11 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.delete(`${apiUrl}/game/partidas/${id}`, {
+      const res = await fetch(`${apiUrl}/game/partidas/${id}`, {
+        method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
+      if (!res.ok) throw new Error('Error al destruir');
       showNotification('Partida destruida con éxito', 'success');
       fetchData('games');
     } catch (error) {
@@ -101,9 +104,15 @@ const AdminDashboard = () => {
     const newType = currentType === 'publica' ? 'privada' : 'publica';
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${apiUrl}/game/partidas/${id}`, { tipo: newType }, {
-        headers: { Authorization: `Bearer ${token}` }
+      const res = await fetch(`${apiUrl}/game/partidas/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ tipo: newType })
       });
+      if (!res.ok) throw new Error('Error al cambiar el tipo');
       showNotification(`Partida cambiada a ${newType}`, 'success');
       fetchData('games');
     } catch (error) {
@@ -120,21 +129,30 @@ const AdminDashboard = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${apiUrl}/game/add-resources`, {
-        partida_id: parseInt(cheatData.partida_id),
-        jugador_id: parseInt(cheatData.jugador_id),
-        recursos: {
-          madera: parseInt(cheatData.recursos.madera) || 0,
-          berries: parseInt(cheatData.recursos.berries) || 0,
-          haki: parseInt(cheatData.recursos.haki) || 0
-        }
-      }, {
-        headers: { Authorization: `Bearer ${token}` }
+      const res = await fetch(`${apiUrl}/game/add-resources`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          partida_id: parseInt(cheatData.partida_id),
+          jugador_id: parseInt(cheatData.jugador_id),
+          recursos: {
+            madera: parseInt(cheatData.recursos.madera) || 0,
+            berries: parseInt(cheatData.recursos.berries) || 0,
+            haki: parseInt(cheatData.recursos.haki) || 0
+          }
+        })
       });
+      const data = await res.json();
+      if (!res.ok) {
+        throw new Error(data.mensaje || 'Error al inyectar recursos');
+      }
       showNotification('Recursos inyectados exitosamente', 'success');
       setCheatData({ partida_id: '', jugador_id: '', recursos: { madera: 0, berries: 0, haki: 0 } });
     } catch (error) {
-      showNotification(error.response?.data?.mensaje || 'Error al inyectar recursos', 'error');
+      showNotification(error.message || 'Error al inyectar recursos', 'error');
     }
   };
 
@@ -146,19 +164,19 @@ const AdminDashboard = () => {
       </div>
 
       <div className="admin-tabs">
-        <button
+        <button 
           className={`tab-btn ${activeTab === 'users' ? 'active' : ''}`}
           onClick={() => setActiveTab('users')}
         >
           Gestión de Usuarios
         </button>
-        <button
+        <button 
           className={`tab-btn ${activeTab === 'games' ? 'active' : ''}`}
           onClick={() => setActiveTab('games')}
         >
           Gestión de Partidas
         </button>
-        <button
+        <button 
           className={`tab-btn ${activeTab === 'cheats' ? 'active' : ''}`}
           onClick={() => setActiveTab('cheats')}
         >
@@ -236,8 +254,8 @@ const AdminDashboard = () => {
                         <td>
                           <strong>{partida.creador}</strong>
                           <div className="players-list">
-                            {partida.jugadores && partida.jugadores.length > 0 ?
-                              partida.jugadores.join(' vs ') :
+                            {partida.jugadores && partida.jugadores.length > 0 ? 
+                              partida.jugadores.join(' vs ') : 
                               'Sin oponentes'}
                           </div>
                         </td>
@@ -267,54 +285,54 @@ const AdminDashboard = () => {
                   <div className="form-row">
                     <div className="form-group">
                       <label>ID de Partida</label>
-                      <input
-                        type="number"
-                        required
+                      <input 
+                        type="number" 
+                        required 
                         value={cheatData.partida_id}
-                        onChange={(e) => setCheatData({ ...cheatData, partida_id: e.target.value })}
+                        onChange={(e) => setCheatData({...cheatData, partida_id: e.target.value})}
                       />
                     </div>
                     <div className="form-group">
                       <label>ID de Jugador</label>
-                      <input
-                        type="number"
-                        required
+                      <input 
+                        type="number" 
+                        required 
                         value={cheatData.jugador_id}
-                        onChange={(e) => setCheatData({ ...cheatData, jugador_id: e.target.value })}
+                        onChange={(e) => setCheatData({...cheatData, jugador_id: e.target.value})}
                       />
                     </div>
                   </div>
                   <div className="form-row resources-row">
                     <div className="form-group">
                       <label>💰 Berries</label>
-                      <input
-                        type="number"
+                      <input 
+                        type="number" 
                         value={cheatData.recursos.berries}
                         onChange={(e) => setCheatData({
-                          ...cheatData,
-                          recursos: { ...cheatData.recursos, berries: e.target.value }
+                          ...cheatData, 
+                          recursos: {...cheatData.recursos, berries: e.target.value}
                         })}
                       />
                     </div>
                     <div className="form-group">
                       <label>🪵 Madera</label>
-                      <input
-                        type="number"
+                      <input 
+                        type="number" 
                         value={cheatData.recursos.madera}
                         onChange={(e) => setCheatData({
-                          ...cheatData,
-                          recursos: { ...cheatData.recursos, madera: e.target.value }
+                          ...cheatData, 
+                          recursos: {...cheatData.recursos, madera: e.target.value}
                         })}
                       />
                     </div>
                     <div className="form-group">
                       <label>✨ Haki</label>
-                      <input
-                        type="number"
+                      <input 
+                        type="number" 
                         value={cheatData.recursos.haki}
                         onChange={(e) => setCheatData({
-                          ...cheatData,
-                          recursos: { ...cheatData.recursos, haki: e.target.value }
+                          ...cheatData, 
+                          recursos: {...cheatData.recursos, haki: e.target.value}
                         })}
                       />
                     </div>
