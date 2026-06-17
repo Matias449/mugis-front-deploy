@@ -5,11 +5,15 @@
   min-height: 80vh;
 }
 
+.gameboard-header {
+  margin-bottom: 2.5rem;
+}
+
 .gameboard-container h2 {
   font-size: 2.5rem;
   color: var(--text-h);
   font-family: var(--font-heading);
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
   position: relative;
   display: inline-block;
@@ -25,6 +29,16 @@
   height: 3px;
   background-color: var(--treasure-gold);
 }
+
+.gameboard-subtitle {
+  font-size: 1.3rem;
+  color: var(--text-p);
+  margin-top: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
 
 .gameboard-layout {
   display: grid;

@@ -1,8 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Landing.css';
 
 function Landing() {
+  const navigate = useNavigate();
+
+  const handleStartAdventure = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/lobby');
+    } else {
+      navigate('/autenticacion');
+    }
+  };
+
   return (
     <div className="landing-container">
       {/* Encabezado principal o Hero Section */}
@@ -12,9 +23,9 @@ function Landing() {
           El juego de estrategia definitivo donde competirás por convertirte
           en el Rey de los Piratas. Gestiona tus recursos, mejora tu barco y navega el océano.
         </p>
-        <Link to="/autenticacion" className="btn-cta">
+        <button onClick={handleStartAdventure} className="btn-cta">
           Comenzar Aventura
-        </Link>
+        </button>
       </header>
 
       {/* Secciones informativas para orientar al usuario */}

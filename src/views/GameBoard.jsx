@@ -56,6 +56,7 @@ function GameBoard() {
         estado: estadoData.estado,
         ganador: estadoData.ganador,
         turno_actual_id: estadoData.turno_actual,
+        jugadores: estadoData.jugadores || [],
         jugador_actual: {
           ...invData.inventario,
           id: myId,
@@ -110,14 +111,22 @@ function GameBoard() {
 
   const esMiTurno = gameState.turno_actual_id === gameState.jugador_actual.id && !gameState.ganador;
 
+  const playersTitle = gameState.jugadores && gameState.jugadores.length > 0
+    ? gameState.jugadores.map((j) => `#${j.username}`).join(' vs ')
+    : '';
+
   return (
     <div className="gameboard-container">
-      <h2>
-        Partida #
-        {gameState.partidaId}
-        {' '}
-        🏴‍☠️
-      </h2>
+      <div className="gameboard-header">
+        <h2>
+          Partida 🏴‍☠️
+        </h2>
+        {playersTitle && (
+          <div className="gameboard-subtitle">
+            {playersTitle}
+          </div>
+        )}
+      </div>
       {showVictory && (
         <div className="victory-overlay">
           <div className="victory-animation">
