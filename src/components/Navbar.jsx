@@ -7,6 +7,7 @@ function Navbar() {
   const { showNotification } = useNotification();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [username, setUsername] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -16,9 +17,18 @@ function Navbar() {
     if (token) {
       setIsLoggedIn(true);
       setUsername(storedUsername || 'Capitán');
+      try {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        if (payload.tipo_usuario === 'administrador') {
+          setIsAdmin(true);
+        }
+      } catch (e) {
+        console.error('Error decoding token', e);
+      }
     } else {
       setIsLoggedIn(false);
       setUsername('');
+      setIsAdmin(false);
     }
   }, []);
 
@@ -27,6 +37,7 @@ function Navbar() {
     localStorage.removeItem('username');
     setIsLoggedIn(false);
     setUsername('');
+    setIsAdmin(false);
     setDropdownOpen(false);
     showNotification('Sesión cerrada. ¡Buen viaje por el Grand Line! 🏴‍☠️', 'info');
     setTimeout(() => {
@@ -75,6 +86,16 @@ function Navbar() {
                     🎮 Ir al Lobby
                   </Link>
                 </li>
+                {isAdmin && (
+                  <>
+                    <li className="dropdown-divider" />
+                    <li>
+                      <Link to="/admin" onClick={() => setDropdownOpen(false)}>
+                        🛡️ Panel de Control
+                      </Link>
+                    </li>
+                  </>
+                )}
                 <li className="dropdown-divider" />
                 <li>
                   <button onClick={handleLogout} className="dropdown-logout-btn">
