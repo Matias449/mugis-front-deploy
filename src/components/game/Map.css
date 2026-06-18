@@ -23,8 +23,9 @@
   border: 4px solid #8b5a2b; /* Wooden/leather border */
   box-shadow: inset 0 0 40px rgba(139, 90, 43, 0.5), 0 8px 16px rgba(0, 0, 0, 0.4);
   position: relative;
-  overflow: hidden;
-  min-height: 500px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-height: 700px;
   display: flex;
   flex-direction: column;
 }
@@ -44,7 +45,8 @@
   position: relative;
   flex: 1;
   width: 100%;
-  min-height: 400px;
+  min-width: 1050px;
+  min-height: 600px;
   border: 2px dashed rgba(139, 90, 43, 0.4);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.2);
@@ -62,16 +64,9 @@
 
 .route-line {
   stroke: #8b5a2b;
-  stroke-width: 3;
-  stroke-dasharray: 8 6;
-  opacity: 0.6;
-  animation: dashAnimation 20s linear infinite;
-}
-
-@keyframes dashAnimation {
-  to {
-    stroke-dashoffset: -100;
-  }
+  stroke-width: 2;
+  stroke-dasharray: 7 7;
+  opacity: 0.4;
 }
 
 .island-node {
@@ -93,7 +88,7 @@
 }
 
 .island-icon {
-  font-size: 2.5rem;
+  font-size: 2rem;
   filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.4));
   transition: transform 0.3s ease;
 }
@@ -108,12 +103,15 @@
   color: #4a2e15;
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 0.85rem;
-  padding: 0.2rem 0.5rem;
+  font-size: 0.72rem;
+  padding: 0.18rem 0.4rem;
   border-radius: 4px;
   border: 1px solid #8b5a2b;
   margin-top: 5px;
-  white-space: nowrap;
+  max-width: 5.8rem;
+  white-space: normal;
+  line-height: 1.1;
+  overflow-wrap: break-word;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   text-align: center;
 }
@@ -136,8 +134,8 @@
 .island-node.active::before {
   content: '';
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: radial-gradient(circle, rgba(244,67,54,0.4) 0%, transparent 70%);
   border-radius: 50%;
   top: 50%;
@@ -163,7 +161,7 @@
 }
 
 .indicator-badge {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   padding: 0.1rem 0.3rem;
   border-radius: 4px;
   font-weight: 800;
@@ -184,3 +182,8 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
+@media (max-width: 700px) {
+  .map-canvas {
+    min-width: 1050px;
+  }
+}

@@ -10,7 +10,6 @@ import Auth from './views/Auth';
 import Lobby from './views/Lobby';
 import GameBoard from './views/GameBoard';
 import Profile from './views/Profile';
-import AdminDashboard from './views/AdminDashboard';
 import { NotificationProvider } from './components/NotificationContext';
 
 // Redirecciona dinámicamente si entran a /juego directamente
@@ -36,7 +35,6 @@ function App() {
             <Route path="/juego" element={<GameRedirect />} />
             <Route path="/juego/:partida_id" element={<GameBoard />} />
             <Route path="/perfil" element={<Profile />} />
-            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
       </Router>
